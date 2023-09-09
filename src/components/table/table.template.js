@@ -9,7 +9,7 @@ function toColumn(col) {
   `
 }
 
-function createCell() {
+function toCell() {
   return `
     <div class="cell" contenteditable></div>
   `
@@ -18,7 +18,7 @@ function createCell() {
 function createRow(number, content) {
   return `
     <div class="row">
-      <div class="row-info">${number}</div>
+      <div class="row-info">${number ? number : ''}</div>
 
       <div class="row-data">
         ${content}
@@ -41,14 +41,13 @@ export function createTable(rowsCount = 15) {
       .map(toColumn)
       .join('')
 
-  const cells = new Array(colsCount)
-      .fill('')
-      .map(createCell)
-      .join('')
-
   rows.push(createRow(0, cols))
 
   for (let i = 0; i < rowsCount; i++) {
+    const cells = new Array(colsCount)
+        .fill('')
+        .map(toCell)
+        .join('')
     const number = i + 1;
     rows.push(createRow(number, cells))
   }
