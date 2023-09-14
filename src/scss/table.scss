@@ -14,11 +14,6 @@
     flex-direction: row;
     min-height: 20px;
     height: $row-height;
-
-    &.resize {
-      opacity: 0.7;
-      border-bottom: 4px solid $primary-color;
-    }
   }
 
   .row-info {
@@ -49,11 +44,6 @@
     border-top: 0;
     border-left: 0;
     background-color: #f8f9fa;
-
-    &.resize {
-      opacity: 0.7;
-      border-right: 4px solid $primary-color;
-    }
   }
 
   .cell {
@@ -73,11 +63,6 @@
       outline: 2px solid $primary-color;
       z-index: 2;
     }
-
-    &.resize {
-      opacity: 0.7;
-      border-right: 4px solid $primary-color;
-    }
   }
 
   .col-resize, .row-resize {
@@ -91,22 +76,30 @@
       opacity: 1;
     }
 
+    &.resize {
+      opacity: 1;
+      z-index: 5;
+    }
+
   }
 
   .col-resize {
     top: 0;
     width: 4px;
 
-    &:hover {
+    &:hover,
+    &.resize  {
       cursor: col-resize;
     }
+
   }
 
   .row-resize {
     left: 0;
     height: 4px;
 
-    &:hover {
+    &:hover,
+    &.resize {
       cursor: row-resize;
     }
   }
