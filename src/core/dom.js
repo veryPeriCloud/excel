@@ -57,6 +57,15 @@ class Dom {
   find(selector) {
     return this.$el.querySelector(selector)
   }
+
+  css(styles = {}) {
+    const cssText = Object.entries(styles).map(([key, value]) => {
+      return `${key}:${value}`
+    })
+        .join('; ')
+
+    return this.$el.style.cssText = `${cssText}`;
+  }
 }
 
 export function $(selector) {

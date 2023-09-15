@@ -36,13 +36,17 @@ export class Table extends ExcelComponent {
           const delta = e.pageX - coords.right
           value = coords.width + delta
 
-          $resizer.$el.style.right = `-${delta}px`;
+          $resizer.$el.style.right = delta > 0
+            ? `-${delta}px`
+            : `${Math.abs(delta)}px`;
           $resizer.$el.style.bottom = `-${tableHeight}px`
-        } else if (type === 'row') {
+        } else {
           const delta = e.pageY - coords.bottom
           value = coords.height + delta
 
-          $resizer.$el.style.bottom = `-${delta}px`
+          $resizer.$el.style.bottom = delta > 0
+            ? `-${delta}px`
+            : `${Math.abs(delta)}px`
           $resizer.$el.style.right = `-${tableWidth}px`
         }
         $resizer.$el.classList.add('resize');
@@ -54,11 +58,12 @@ export class Table extends ExcelComponent {
           cols.forEach((col) => {
             col.style.width = value + 'px'
           })
-        } else if (type === 'row') {
+        } else {
           row.style.height = value + 'px'
         }
-        $resizer.$el.style.bottom = 0
-        $resizer.$el.style.right = 0
+        // to change!
+        $resizer.$el.style.bottom = 0;
+        $resizer.$el.style.right = 0;
         $resizer.$el.classList.remove('resize')
         document.onmousemove = null
       }
