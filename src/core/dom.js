@@ -59,12 +59,9 @@ class Dom {
   }
 
   css(styles = {}) {
-    const cssText = Object.entries(styles).map(([key, value]) => {
-      return `${key}:${value}`
-    })
-        .join('; ')
-
-    return this.$el.style.cssText = `${cssText}`;
+    Object
+        .keys(styles)
+        .forEach((key) => this.$el.style[key] = styles[key])
   }
 }
 
